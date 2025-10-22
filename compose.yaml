@@ -1,0 +1,36 @@
+﻿services:
+  db:
+    image: postgres
+    container_name: omnicarpark_db
+    restart: always
+    environment:
+      POSTGRES_USER: someuser
+      POSTGRES_PASSWORD: somepassword
+      POSTGRES_DB: omnicarpark
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "someuser", "-d", "omnicarpark" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  omnicarpark:
+    build:
+      context: OmniCarPark
+      target: final
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      DefaultConnection: "Host=db;Port=5432;Database=omnicarpark;Username=someuser;Password=somepassword"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: OmniCarPark
+
+volumes:
+  pgdata:

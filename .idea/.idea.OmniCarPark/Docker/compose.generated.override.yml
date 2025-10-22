@@ -1,0 +1,20 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  omnicarpark:
+    build:
+      context: "/Users/janrzepiszczak/repos/OmniCarPark"
+      dockerfile: "OmniCarPark/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/OmniCarPark.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+    image: "omnicarpark:dev"
+    ports: []
+    volumes:
+    - "/Users/janrzepiszczak/repos/OmniCarPark/OmniCarPark:/app:rw"
+    - "/Users/janrzepiszczak/repos/OmniCarPark:/src:rw"
+    - "/Users/janrzepiszczak/.nuget/packages:/root/.nuget/packages"
+    working_dir: "/app"
