@@ -15,7 +15,7 @@ namespace OmniCarPark.Migrations
                 name: "ParkingSpaces",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +28,7 @@ namespace OmniCarPark.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     RegistrationPlate = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    ParkingSpaceId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ParkingSpaceId = table.Column<int>(type: "integer", nullable: false),
                     ParkingEntryDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ParkingExitDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },

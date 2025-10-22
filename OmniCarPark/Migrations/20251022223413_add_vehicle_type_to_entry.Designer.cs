@@ -12,8 +12,8 @@ using OmniCarPark.Infrastructure.Data;
 namespace OmniCarPark.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251022103608_initial")]
-    partial class initial
+    [Migration("20251022223413_add_vehicle_type_to_entry")]
+    partial class add_vehicle_type_to_entry
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,19 +31,22 @@ namespace OmniCarPark.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("ParkingEntryDate")
+                    b.Property<DateTime>("ParkingEntryDateTime")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("ParkingExitDate")
+                    b.Property<DateTime?>("ParkingExitDateTime")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("ParkingSpaceId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("ParkingSpaceId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("RegistrationPlate")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
+
+                    b.Property<int>("VehicleType")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -58,9 +61,8 @@ namespace OmniCarPark.Migrations
 
             modelBuilder.Entity("OmniCarPark.Infrastructure.Data.Models.ParkingSpace", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

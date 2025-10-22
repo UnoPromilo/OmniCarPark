@@ -2,7 +2,7 @@
 
 namespace OmniCarPark.Tests;
 
-public class Tests
+public class HealthCheck
 {
     [Test]
     public async Task HealthCheckShouldReturnOk()

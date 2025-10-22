@@ -1,6 +1,6 @@
 ﻿services:
   db:
-    image: postgres
+    image: postgres:18
     container_name: omnicarpark_db
     restart: always
     environment:
@@ -8,7 +8,7 @@
       POSTGRES_PASSWORD: somepassword
       POSTGRES_DB: omnicarpark
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "someuser", "-d", "omnicarpark" ]
       interval: 10s

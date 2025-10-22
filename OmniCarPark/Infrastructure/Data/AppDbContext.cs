@@ -12,6 +12,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<ParkingSpace>()
+            .Property(sp => sp.Id)
+            .ValueGeneratedNever();
+
         modelBuilder.Entity<ParkingEntry>()
             .HasOne(e => e.ParkingSpace)
             .WithMany(p => p.ParkingEntries)
